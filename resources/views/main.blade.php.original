@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="{{ app()->getLocale() }}">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+
+    <title>{{ config('app.name', 'Laravel') }}</title>
+
+    <!-- Styles -->
+    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+</head>
+<body>
+<h2>Bootstrap Horizontal Form</h2>
+<form class="form-horizontal" action="/hoge/foo" method="post">
+  <div class="form-group">
+    <label for="name" class="control-label col-xs-2">Name</label>
+    <div class="col-xs-5">
+      <input type="text" class="form-control" id="name" name="name" placeholder="your name">
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="number" class="control-label col-xs-2">Number</label>
+    <div class="col-xs-3">
+      <select class="form-control" id="number" name="number">
+        <option value="1">1</option>
+        <option value="2" selected="selected">2</option>
+        <option value="3">3</option>
+      </select>
+    </div>
+  </div>
+  <div class="form-group">
+    <div class="col-xs-offset-2 col-xs-10">
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </div>
+</form>
+</body>
+</html>
