@@ -53,11 +53,7 @@
 </div>
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">
-	@php $p = $videos['p']>5?$videos['p']-5:1 @endphp
-	@for($i=0;$i<10;$i++)
-		<li class="page-item"><a class="page-link" href="{{ Request::fullUrl().'&p='.$p}}">{{ $p }}</a></li>
-	@php $p++ @endphp
-	@endfor
+	  @inclide('google.patinate')
   </ul>
 </nav>
 

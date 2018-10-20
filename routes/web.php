@@ -11,11 +11,11 @@
 |
 */
 
-// Route::get('/', function () {
-//     return view('welcome');
-// });
+Route::get('/', function () {
+    return view('welcome');
+});
 
-Route::get('/', 'ArrivalNoticeController@index');
+// Route::get('/', 'ArrivalNoticeController@index');
 Route::get('home', 'ArrivalNoticeController@getHome');
 
 Route::get('yahoo', 'YahooController@getYahooTv')->name('get.yahoo.tv');

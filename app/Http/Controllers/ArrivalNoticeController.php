@@ -27,7 +27,7 @@ class ArrivalNoticeController extends Controller
 
 	public function getHome()
 	{
-		return view('main');
+		return view('home');
 	}
     //
 }

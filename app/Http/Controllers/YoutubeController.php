@@ -10,7 +10,7 @@ class YoutubeController extends Controller
 {
 	public function youtube()
 	{
-		$videos = ApiService::youtube();
+		$videos = ApiService::getContent('youtube', 50);
 		$keyword = Input::get('keyword');
 
 		return view('google.youtube', compact('videos', 'keyword'));
