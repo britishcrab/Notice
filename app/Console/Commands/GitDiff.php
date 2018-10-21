@@ -41,15 +41,17 @@ class GitDiff extends Command
          * コマンドの引数を取得
          */
         $dir = $this->argument("repo_name");
-        /**
-         * 自身のルートディレクトリを取得
-         */
-        $current = base_path();
-        /**
-         * コマンド実行ディレクトリへ移動
-         */
-        chdir ($current.'/../'.$dir.'/Employee_Management');
-//        chdir ($current.'/../'.$dir);
+
+        $this->changeCurrentDir($dir);
+//        /**
+//         * 自身のルートディレクトリを取得
+//         */
+//        $current = base_path();
+//        /**
+//         * コマンド実行ディレクトリへ移動
+//         */
+//        chdir ($current.'/../'.$dir.'/Employee_Management');
+////        chdir ($current.'/../'.$dir);
         /**
          * gitリポジトリか判定
          * 違うならば終了
@@ -57,14 +59,15 @@ class GitDiff extends Command
         if (!file_exists('.git')) {
             return $this->error('Its git repository not found !');
         };
-        /**
-         * 自身と最新のコミットまでの差分を取得
-         */
-        $cmd = 'git diff --stat --name-only HEAD';
-        $gitcmd = sprintf($cmd);
-        ob_start();
-        passthru($gitcmd, $ret);
-        $diff =  ob_get_clean();
+        $diff = $this->getGitDiff();
+//        /**
+//         * 自身と最新のコミットまでの差分を取得
+//         */
+//        $cmd = 'git diff --stat --name-only HEAD';
+//        $gitcmd = sprintf($cmd);
+//        ob_start();
+//        passthru($gitcmd, $ret);
+//        $diff =  ob_get_clean();
         var_dump($diff);
         exit;
         /**
@@ -87,6 +90,32 @@ class GitDiff extends Command
         $diff = array_filter($diff, 'strlen');
 
         var_dump($diff);
+    }
+
+    private function changeCurrentDir($dir)
+    {
+        /**
+         * 自身のルートディレクトリを取得
+         */
+        $current = base_path();
+        /**
+         * コマンド実行ディレクトリへ移動
+         */
+        return chdir ($current.'/../'.$dir.'/Employee_Management');
+    }
+
+    private function getGitDiff()
+    {
+        echo 'git diff processing';
+        /**
+         * 自身と最新のコミットまでの差分を取得
+         */
+        $cmd = 'git diff --stat --name-only HEAD';
+        $gitcmd = sprintf($cmd);
+        ob_start();
+        passthru($gitcmd, $ret);
+        $diff =  ob_get_clean();
+        return $diff;
     }
 
     public function exec($cmd_name, $cmd)
